@@ -1,7 +1,10 @@
 # Diário de Aprendizado
 
 [1. Partials](#partials).
-[2. Pasta assets](#pasta_assets).
+
+[2. Pasta assets](#pasta-assets).
+
+[3. Rails Console & Active Record](#rails-console--active-record)
 
 # Partials
 
@@ -72,7 +75,9 @@
 Em qualquer projeto web utilizamos arquivos complementares ao HTML, como por exemplo os CSS e os JavaScripts. O rails tem um diretório específico para manipular esses arquivos, assim como as imagens.
 
 > Arquivos CSS: `app/assets/stylesheets`
+
 > Arquivos JS: `app/assets/javascripts`
+
 > Arquivos de Imagem (JPG, PNG): `app/assets/images`
 
 # Rails Console & Active Record
@@ -102,4 +107,26 @@ Com o terminal aberto, digite `rails c` que irá entrar no console
 ```
 <Model>.where(description: "Nova descrição")
 ```
-.find
+
+```
+<Model>.last
+```
+
+## Update
+
+```
+x = <Model>.find(1)
+x.description = "NOVA DESCRIÇÃO"
+```
+
+```
+<Model>.find(1)
+<Model>.update(description: "Descrição Atualizada")
+```
+
+## Delete
+
+```
+x = <Model>.find(1)
+x.destroy
+```
