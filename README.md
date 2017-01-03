@@ -88,13 +88,13 @@ Rails Console é um console do Rails que possibilita as ações de CRUD no banco
 
 Com o terminal aberto, digite `rails c` que irá entrar no console
 
-## Create
+###### Create
 
 ```
 <Model>.create(description: "Nova descrição")
 ```
 
-## Read
+###### Read
 
 ```
 <Model>.all
@@ -112,7 +112,7 @@ Com o terminal aberto, digite `rails c` que irá entrar no console
 <Model>.last
 ```
 
-## Update
+###### Update
 
 ```
 x = <Model>.find(1)
@@ -141,41 +141,39 @@ Na fase de desenvolvimento de um projeto, é muito comum precisarmos ter um banc
 
 2. Gerando n registros.
 
-```
-puts "Gerando os registros de Kind"
-Kind.create(
-			[{
-				description: "Amigo"
-			}, 
-			{
-				description: "Contato"
-			}, 
-			{
-				description: "Comercial"
-			}])
-puts "Gerando os registros de Kind... [OK]"
-```
-
-A abordagem acima é manual de mais. Suponha que você precise de 100 cadastros em uma tabela com dados ficticios, você não precisa fazer 100x Ctrl + C / Ctrl + V
-
-Instale a [gem faker](https://github.com/stympy/faker) ela permite que você gere os mais diversos dados de forma aleatória e consistente. Leiam sua documentação, é muito simples de usar.
-
-Abaixo iremos gerar dados sobre 100 contatos de forma automatica.
-
-```
-puts "Gerando os registros de Contacts"
-100.times do |i|
-	Contact.create(
+	```
+	puts "Gerando os registros de Kind"
+	Kind.create(
 				[{
-					name: Faker::Name.name,
-					email: Faker::Internet.email,
-					city: Faker::Address.city,
-					rmk: Faker::Lorem.sentence(3)
+					description: "Amigo"
+				}, 
+				{
+					description: "Contato"
+				}, 
+				{
+					description: "Comercial"
 				}])
-end
-puts "Gerando os registros de Contacts... [OK]"
-```
+	puts "Gerando os registros de Kind... [OK]"
+	```
 
-Caso você precise inserir uma chave estrangeira nessa geração automatica, basta utilizar o seguinte comando: `<Model>.all.sample`. Este comando irá pegar uma amostra de 1 valor da Tabela <Model>.	
+	A abordagem acima é manual de mais. Suponha que você precise de 100 cadastros em uma tabela com dados ficticios, você não precisa fazer 100x Ctrl + C / Ctrl + V. Para isso, instale a [gem faker](https://github.com/stympy/faker) ela permite que você gere os mais diversos dados de forma aleatória e consistente. Leiam sua documentação, é muito simples de usar.
 
-Após digitar os comandos acima, vá até o terminal e digite: `rails db:seed`. Ele irá imprimir os valores inseridos no puts e criará os registros.
+	Abaixo iremos gerar dados sobre 100 contatos de forma automatica.
+
+	```
+	puts "Gerando os registros de Contacts"
+	100.times do |i|
+		Contact.create(
+					[{
+						name: Faker::Name.name,
+						email: Faker::Internet.email,
+						city: Faker::Address.city,
+						rmk: Faker::Lorem.sentence(3)
+					}])
+	end
+	puts "Gerando os registros de Contacts... [OK]"
+	```
+
+	Caso você precise inserir uma chave estrangeira nessa geração automatica, basta utilizar o seguinte comando: `<Model>.all.sample`. Este comando irá pegar uma amostra de 1 valor da Tabela <Model>.	
+
+	Após digitar os comandos acima, vá até o terminal e digite: `rails db:seed`. Ele irá imprimir os valores inseridos no puts e criará os registros.
