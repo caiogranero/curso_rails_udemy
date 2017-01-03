@@ -124,7 +124,7 @@ x.description = "NOVA DESCRIÇÃO"
 <Model>.update(description: "Descrição Atualizada")
 ```
 
-## Delete
+###### Delete
 
 ```
 x = <Model>.find(1)
@@ -137,9 +137,9 @@ Na fase de desenvolvimento de um projeto, é muito comum precisarmos ter um banc
 
 1. Acesse o arquivo `db/seeds.rb`
 
-Dentro do arquivo seeds, é possível colocarmos comandos de Active Record, juntamente com Ruby, para popular o banco. Abaixo alguns comandos simples
+	Dentro do arquivo seeds, é possível colocarmos comandos de Active Record, juntamente com Ruby, para popular o banco. Abaixo alguns comandos simples
 
-2. Gerando 3 registros manuais.
+2. Gerando n registros.
 
 ```
 puts "Gerando os registros de Kind"
@@ -176,4 +176,6 @@ end
 puts "Gerando os registros de Contacts... [OK]"
 ```
 
-Caso você precise inserir uma chave estrangeira nessa geração automatica, basta utilizar o seguinte comando: `<Model>.all.sample`. Este comando irá pegar uma amostra de 1 valor da Tabela <Model>.
+Caso você precise inserir uma chave estrangeira nessa geração automatica, basta utilizar o seguinte comando: `<Model>.all.sample`. Este comando irá pegar uma amostra de 1 valor da Tabela <Model>.	
+
+Após digitar os comandos acima, vá até o terminal e digite: `rails db:seed`. Ele irá imprimir os valores inseridos no puts e criará os registros.
