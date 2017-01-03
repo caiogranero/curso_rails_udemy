@@ -130,3 +130,50 @@ x.description = "NOVA DESCRIÇÃO"
 x = <Model>.find(1)
 x.destroy
 ```
+
+# Populando o banco de dados (db/seeds)
+
+Na fase de desenvolvimento de um projeto, é muito comum precisarmos ter um banco de dados com uma quantidade x de registros pré cadastrados para usarmos como teste. O Rails possibilita que isso seja feito de uma forma muito prática e escalável.
+
+1. Acesse o arquivo `db/seeds.rb`
+
+Dentro do arquivo seeds, é possível colocarmos comandos de Active Record, juntamente com Ruby, para popular o banco. Abaixo alguns comandos simples
+
+2. Gerando 3 registros manuais.
+
+```
+puts "Gerando os registros de Kind"
+Kind.create(
+			[{
+				description: "Amigo"
+			}, 
+			{
+				description: "Contato"
+			}, 
+			{
+				description: "Comercial"
+			}])
+puts "Gerando os registros de Kind... [OK]"
+```
+
+A abordagem acima é manual de mais. Suponha que você precise de 100 cadastros em uma tabela com dados ficticios, você não precisa fazer 100x Ctrl + C / Ctrl + V
+
+Instale a [gem faker](https://github.com/stympy/faker) ela permite que você gere os mais diversos dados de forma aleatória e consistente. Leiam sua documentação, é muito simples de usar.
+
+Abaixo iremos gerar dados sobre 100 contatos de forma automatica.
+
+```
+puts "Gerando os registros de Contacts"
+100.times do |i|
+	Contact.create(
+				[{
+					name: Faker::Name.name,
+					email: Faker::Internet.email,
+					city: Faker::Address.city,
+					rmk: Faker::Lorem.sentence(3)
+				}])
+end
+puts "Gerando os registros de Contacts... [OK]"
+```
+
+Caso você precise inserir uma chave estrangeira nessa geração automatica, basta utilizar o seguinte comando: `<Model>.all.sample`. Este comando irá pegar uma amostra de 1 valor da Tabela <Model>.
