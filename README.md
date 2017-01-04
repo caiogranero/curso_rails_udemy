@@ -6,6 +6,8 @@
 
 [3. Rails Console & Active Record](#rails-console--active-record)
 
+[4. Populando o banco de dados (db/seeds)](#populando-o-banco-de-dados-dbseeds)
+
 # Partials
 
 É muito comum precisarmos usar o mesmo trecho de código em diversos locais diferentes do nosso projeto. Porém, ficar repetindo esses trechos em todos os locais não é a melhor maneira de se fazer isso. Em rails é possivel simplificar esse processo utilizando as partials.
@@ -177,3 +179,32 @@ Na fase de desenvolvimento de um projeto, é muito comum precisarmos ter um banc
 	Caso você precise inserir uma chave estrangeira nessa geração automatica, basta utilizar o seguinte comando: `<Model>.all.sample`. Este comando irá pegar uma amostra de 1 valor da Tabela <Model>.	
 
 	Após digitar os comandos acima, vá até o terminal e digite: `rails db:seed`. Ele irá imprimir os valores inseridos no puts e criará os registros.
+
+# has_only e belongs_to
+
+Durante a modelagem do nosso banco de dados, definimos alguns tipos de relacionamento, sendo esses n:n, n:1 ou 1:1. No Active Record, isso é definido através das declarações `has_only` e `belongs_to`
+
+###### Exemplo
+
+Dado que temos a tabela Contato e Endereço
+1 Contato pode ter apenas 1 endereço e 1 endereço corresponde a 1 contato, logo o relacionamento é 1:1
+A tabela Endereço terá a FK de Contato.
+
+* O arquivo app/models/contact.rb deverá ter ```has_one :address```
+* O arquivo app/models/address.rb deverá ter ```belongs_to contact```
+
+Através do belongs_to, é possível consultar diretamente dados da segunda tabela, por exemplo: `Contact.address.street` irá retornar o valor da rua do contato selecionado.
+
+# Inserindo em um Model, atributos de outro
+
+Ao decorrer do aumento da complexidade dos nossos projetos, é bem comum precisarmos fazer formulários de cadastros aonde será inserido o conteúdo em mais de uma tabela. A declaração `accepts_nested_attributes_for` permite isso`. Através desse atributo, conseguimos alterar os parâmetros enviados para o commit dos novos valores.
+
+######Exemplo no terminal (Continuação do exemplo a cima)
+
+O arquivo contact, contém o has_one :address, isso significa que a FK de Contato está em Endereço, por tanto podemos querer fazer um cadastro de Contato juntamente com um endereço especifico.  
+
+Primeiramente colocamos: `accepts_nested_attributes_for :address` logo abaixo do `has_one :address`, depois no terminal, podemos fazer a declaraçã do params da seguinte forma:
+
+```params = {contact: {name: "Caio", address_attributes: {street: "Rua de Guarulhos"}}}```
+
+Após feito isso, foi criado um registro de contato e um registro de endereço
