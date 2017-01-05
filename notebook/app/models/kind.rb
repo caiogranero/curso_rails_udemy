@@ -1,2 +1,2 @@
-class Kind < ApplicationRecord
+class Kind < ActiveRecord::Base
 end

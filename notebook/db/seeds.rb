@@ -1,34 +1,17 @@
 # This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-puts "Gerando os registros de Kind"
-Kind.create(
-			[{
-				description: "Amigo"
-			}, 
-			{
-				description: "Contato"
-			}, 
-			{
-				description: "Comercial"
-			}])
-puts "Gerando os registros de Kind... [OK]"
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-puts "Gerando os registros de Contacts"
-10.times do |i|
-	Contact.create(
-				[{
-					name: Faker::Name.name,
-					email: Faker::Internet.email,
-					kind: Kind.all.sample,
-					rmk: Faker::Lorem.sentence(3)
-				}])
-end
-puts "Gerando os registros de Contacts... [OK]"
+puts "Gerando os tipos de contato (Kinds)..."
+  Kind.create!([{description: "Amigo"}, 
+               {description: "Contato"},
+               {description: "Comercial"}])
+puts "Gerando os tipos de contato (Kinds)... [OK]"
+
+
 

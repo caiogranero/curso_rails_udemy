@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Contacts</h1>
+<h1>Listing Contacts / <%= @meu_nome %></h1>
 
 <table>
   <thead>
@@ -32,4 +32,5 @@
 
 <%= link_to 'New Contact', new_contact_path %>
 
-<%= render partial: "/contacts/shared/teste" %>
+<% abc = "ABC" %>
+<%= render partial: "/contacts/shared/teste", locals: { yxz: abc } %>

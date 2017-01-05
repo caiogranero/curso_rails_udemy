@@ -3,11 +3,11 @@
 one:
   name: MyString
   email: MyString
-  kind: one
+  kind_id: 
   rmk: MyText
 
 two:
   name: MyString
   email: MyString
-  kind: two
+  kind_id: 
   rmk: MyText

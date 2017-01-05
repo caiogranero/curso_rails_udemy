@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161228000352) do
+ActiveRecord::Schema.define(version: 20160531010745) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -19,8 +20,9 @@ ActiveRecord::Schema.define(version: 20161228000352) do
     t.integer  "contact_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["contact_id"], name: "index_addresses_on_contact_id"
   end
+
+  add_index "addresses", ["contact_id"], name: "index_addresses_on_contact_id"
 
   create_table "contacts", force: :cascade do |t|
     t.string   "name"
@@ -29,8 +31,9 @@ ActiveRecord::Schema.define(version: 20161228000352) do
     t.text     "rmk"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["kind_id"], name: "index_contacts_on_kind_id"
   end
+
+  add_index "contacts", ["kind_id"], name: "index_contacts_on_kind_id"
 
   create_table "kinds", force: :cascade do |t|
     t.string   "description"
@@ -43,7 +46,8 @@ ActiveRecord::Schema.define(version: 20161228000352) do
     t.integer  "contact_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["contact_id"], name: "index_phones_on_contact_id"
   end
+
+  add_index "phones", ["contact_id"], name: "index_phones_on_contact_id"
 
 end

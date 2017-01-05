@@ -2,8 +2,8 @@
 
 one:
   phone: MyString
-  contact: one
+  contact_id: 
 
 two:
   phone: MyString
-  contact: two
+  contact_id: 

@@ -1,48 +1,49 @@
 require 'test_helper'
 
-class KindsControllerTest < ActionDispatch::IntegrationTest
+class KindsControllerTest < ActionController::TestCase
   setup do
     @kind = kinds(:one)
   end
 
   test "should get index" do
-    get kinds_url
+    get :index
     assert_response :success
+    assert_not_nil assigns(:kinds)
   end
 
   test "should get new" do
-    get new_kind_url
+    get :new
     assert_response :success
   end
 
   test "should create kind" do
     assert_difference('Kind.count') do
-      post kinds_url, params: { kind: { description: @kind.description } }
+      post :create, kind: { description: @kind.description }
     end
 
-    assert_redirected_to kind_url(Kind.last)
+    assert_redirected_to kind_path(assigns(:kind))
   end
 
   test "should show kind" do
-    get kind_url(@kind)
+    get :show, id: @kind
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_kind_url(@kind)
+    get :edit, id: @kind
     assert_response :success
   end
 
   test "should update kind" do
-    patch kind_url(@kind), params: { kind: { description: @kind.description } }
-    assert_redirected_to kind_url(@kind)
+    patch :update, id: @kind, kind: { description: @kind.description }
+    assert_redirected_to kind_path(assigns(:kind))
   end
 
   test "should destroy kind" do
     assert_difference('Kind.count', -1) do
-      delete kind_url(@kind)
+      delete :destroy, id: @kind
     end
 
-    assert_redirected_to kinds_url
+    assert_redirected_to kinds_path
   end
 end

@@ -1,10 +1,10 @@
-<%= form_for(kind) do |f| %>
-  <% if kind.errors.any? %>
+<%= form_for(@kind) do |f| %>
+  <% if @kind.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(kind.errors.count, "error") %> prohibited this kind from being saved:</h2>
+      <h2><%= pluralize(@kind.errors.count, "error") %> prohibited this kind from being saved:</h2>
 
       <ul>
-      <% kind.errors.full_messages.each do |message| %>
+      <% @kind.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -12,10 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :description %>
+    <%= f.label :description %><br>
     <%= f.text_field :description %>
   </div>
-
   <div class="actions">
     <%= f.submit %>
   </div>

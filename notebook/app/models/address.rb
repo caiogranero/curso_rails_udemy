@@ -1,3 +1,3 @@
-class Address < ApplicationRecord
+class Address < ActiveRecord::Base
   belongs_to :contact
 end
