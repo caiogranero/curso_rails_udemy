@@ -180,20 +180,22 @@ Na fase de desenvolvimento de um projeto, é muito comum precisarmos ter um banc
 
 	Após digitar os comandos acima, vá até o terminal e digite: `rails db:seed`. Ele irá imprimir os valores inseridos no puts e criará os registros.
 
-# has_only e belongs_to
+# has_only / belongs_to / has_many
 
-Durante a modelagem do nosso banco de dados, definimos alguns tipos de relacionamento, sendo esses n:n, n:1 ou 1:1. No Active Record, isso é definido através das declarações `has_only` e `belongs_to`
+Durante a modelagem do nosso banco de dados, definimos alguns tipos de relacionamento, sendo esses n:n, n:1 ou 1:1. No Active Record, isso é definido através das declarações `has_only` e `belongs_to` e `has_many`
 
 ###### Exemplo
 
 Dado que temos a tabela Contato e Endereço
-1 Contato pode ter apenas 1 endereço e 1 endereço corresponde a 1 contato, logo o relacionamento é 1:1
+1 Contato pode ter apenas 1 endereço e 1 endereço corresponde a 1 contato, logo o relacionamento é 1:1 e um Contato pode ter vários telefones, sendo 1:n
 A tabela Endereço terá a FK de Contato.
 
-* O arquivo app/models/contact.rb deverá ter ```has_one :address```
-* O arquivo app/models/address.rb deverá ter ```belongs_to contact```
+* O arquivo app/models/contact.rb deverá ter `has_one :address` e também `has_many :phones`
+* O arquivo app/models/address.rb deverá ter `belongs_to contact`
 
 Através do belongs_to, é possível consultar diretamente dados da segunda tabela, por exemplo: `Contact.address.street` irá retornar o valor da rua do contato selecionado.
+
+Obs: Quando utilizar has_many, sempre colocar o nome da model no plural, afinal, são muitos.
 
 # Inserindo em um Model, atributos de outro
 
@@ -207,4 +209,58 @@ Primeiramente colocamos: `accepts_nested_attributes_for :address` logo abaixo do
 
 ```params = {contact: {name: "Caio", address_attributes: {street: "Rua de Guarulhos"}}}```
 
-Após feito isso, foi criado um registro de contato e um registro de endereço
+Após feito isso, foi criado um registro de contato e um registro de endereço.
+
+# Configurando o idioma da sua aplicação.
+
+É muito comum precisarmos desenvolver aplicações com suporte a mais de um idioma como inglês/português. Por defualt, o rails configura nossa aplicação em Inglês, abaixo está as instruções para os outros idiomas.
+
+1. Vá em: config/application.rb
+2. Descomente a linha 21 que contém o trecho: `config.i18n.default_locale = :"pt-BR"`
+3. Crie um arquivo com o nome pt-BR.yml na pasta: config/locales/
+4. Coloque o seguinte código nela:
+	```
+	"pt-BR":
+  		hello: "Olá, mundo!"
+  	```
+5. Na sua view, basta inserir o comando: `<h2><%= t 'hello' %></h2>` e irá aparecer "Olá, mundo!"
+
+###### Configurando o idioma para suas models
+
+Para alterar o idioma dentro de suas models, crie um arquivo com o nome: models.pt-BR.yml na pasta config/locales/ e coloque o seguinte trecho de código:
+
+```
+"pt-BR":
+  activerecord:
+    models:
+      contact: Contato
+    attributes:
+      contact:
+        name: "Nome"
+        email: "E-mail"
+        kind: "Tipo de Contato"
+        rmk:  "Obs"
+```
+
+E na view, para referenciar os dados inseridos no arquivo acima, utilize a função do rails: human_attributes
+
+```
+<th><%= Contact.human_attribute_name("name") %></th>
+<th><%= Contact.human_attribute_name("email") %></th>
+<th><%= Contact.human_attribute_name("kind") %></th>
+<th><%= Contact.human_attribute_name("rmk") %></th>
+```
+
+# Organização dos Assets
+
+app/assets são os assets criados pelo rails, como JavaScript ou CSS ou Imagens.
+
+lib/assets são os assets criados por você, desenvolvedor.
+
+vendor/assets is for assets that are owned by outside entities, such as code for JavaScript plugins and CSS frameworks.
+
+###### Carregar asset de acordo com o controller
+
+Caso queiramos carregar apenas o css/js correspondente a o controller atual, precisamos inserir a seguinte linha na aplicação.
+
+`<%= stylesheet_link_tag params[:controller]%>`
