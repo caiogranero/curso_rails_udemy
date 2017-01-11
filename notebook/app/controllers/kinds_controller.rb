@@ -4,7 +4,7 @@ class KindsController < ApplicationController
   # GET /kinds
   # GET /kinds.json
   def index # nome do arquivo
-    @meu_nome = "Jackson Pires"
+    @meu_nome = "Caio Granero"
     @kinds = Kind.all  #  SELECT "kinds".* FROM "kinds"
   end
 

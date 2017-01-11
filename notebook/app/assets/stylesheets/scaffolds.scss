@@ -18,6 +18,9 @@
     margin: -10px -15px 30px -10px;;
     color: #888;
 }
+a {
+    color: #888;
+}
 .basic-grey h1>span {
     display: block;
     font-size: 11px;
@@ -26,7 +29,7 @@
     display: block;
     margin: 0px;
 }
-.basic-grey div.field>label {
+.basic-grey div.field>label, .basic-grey div.field_with_errors>label {
     float: left;
     width: 20%;
     text-align: right;
@@ -34,7 +37,7 @@
     margin-top: 10px;
     color: #888;
 }
-.basic-grey input[type="text"], .basic-grey input[type="email"], .basic-grey textarea, .basic-grey select {
+.basic-grey input[type="text"], .basic-grey input[type="email"], .basic-grey textarea, .basic-grey select, .basic-grey .phone-field {
     border: 1px solid #DADADA;
     color: #888;
     height: 30px;
@@ -50,6 +53,11 @@
     -moz-box-shadow: inset 0px 1px 4px #ECECEC;
     -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
 }
+
+.basic-grey .phone-field {
+    width: 50% !important;
+}
+
 .basic-grey textarea{
     padding: 5px 3px 3px 5px;
 }
@@ -57,7 +65,7 @@
     background: #FFF image-url('down-arrow.png') no-repeat right;
     background: #FFF image-url('down-arrow.png') no-repeat right;
     appearance:none;
-    -webkit-appearance:none; 
+    -webkit-appearance:none;
     -moz-appearance: none;
     text-indent: 0.01px;
     text-overflow: '';

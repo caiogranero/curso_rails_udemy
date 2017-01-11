@@ -3,10 +3,20 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
+# Dynamic nested forms using jQuery made easy; works with formtastic, simple_form or default forms http://github.com/nathanvda/cocoon
+gem "cocoon"
+# A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for modern web app frameworks and ORMs
+gem 'kaminari'
+# Translations for the kaminari gem
+gem 'kaminari-i18n'
 # A library for generating fake data such as names, addresses, and phone numbers.
 gem 'faker'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+# Repository for collecting Locale data for Ruby on Rails I18n as well as other interesting, Rails related I18n stuff http://rails-i18n.org
+gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
+# O Lero-lero Generator é uma ferramenta capaz de gerar frases que 'falam' muita coisa mas que não tem conteúdo algum.
+gem 'lerolero_generator'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -37,6 +47,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  # Rails >= 3 pry initializer
+  gem 'pry-rails'
 end
 
 group :development do
