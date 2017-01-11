@@ -253,11 +253,11 @@ E na view, para referenciar os dados inseridos no arquivo acima, utilize a funç
 
 # Organização dos Assets
 
-app/assets são os assets criados pelo rails, como JavaScript ou CSS ou Imagens.
+* app/assets são os assets criados pelo rails, como JavaScript ou CSS ou Imagens.
 
-lib/assets são os assets criados por você, desenvolvedor.
+* lib/assets são os assets criados por você, desenvolvedor.
 
-vendor/assets is for assets that are owned by outside entities, such as code for JavaScript plugins and CSS frameworks.
+* vendor/assets is for assets that are owned by outside entities, such as code for JavaScript plugins and CSS frameworks.
 
 ###### Carregar asset de acordo com o controller
 
