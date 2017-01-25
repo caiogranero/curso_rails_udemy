@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.3.1"
 
 #A simple, versatile notification library
 gem 'rails-assets-notifyjs', source: 'https://rails-assets.org'
@@ -15,7 +16,7 @@ gem 'kaminari-i18n'
 # A library for generating fake data such as names, addresses, and phone numbers.
 gem 'faker'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#gem 'sqlite3'
 # Repository for collecting Locale data for Ruby on Rails I18n as well as other interesting, Rails related I18n stuff http://rails-i18n.org
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 # O Lero-lero Generator é uma ferramenta capaz de gerar frases que 'falam' muita coisa mas que não tem conteúdo algum.
@@ -52,7 +53,10 @@ group :development, :test do
   gem 'byebug'
   # Rails >= 3 pry initializer
   gem 'pry-rails'
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
 end
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -62,3 +66,7 @@ group :development do
   gem 'spring'
 end
 
+group :production do
+    gem 'pg'
+    gem 'rails_12factor'
+end
