@@ -207,7 +207,7 @@ O arquivo contact, contém o has_one :address, isso significa que a FK de Contat
 
 Primeiramente colocamos: `accepts_nested_attributes_for :address` logo abaixo do `has_one :address`, depois no terminal, podemos fazer a declaraçã do params da seguinte forma:
 
-```params = {contact: {name: "Caio", address_attributes: {street: "Rua de Guarulhos"}}}```
+`params = {contact: {name: "Caio", address_attributes: {street: "Rua de Guarulhos"}}}`
 
 Após feito isso, foi criado um registro de contato e um registro de endereço.
 
@@ -221,8 +221,8 @@ Após feito isso, foi criado um registro de contato e um registro de endereço.
 4. Coloque o seguinte código nela:
 	```
 	"pt-BR":
-  		hello: "Olá, mundo!"
-  	```
+		hello: "Olá, mundo!"
+	```
 5. Na sua view, basta inserir o comando: `<h2><%= t 'hello' %></h2>` e irá aparecer "Olá, mundo!"
 
 ###### Configurando o idioma para suas models
@@ -264,3 +264,40 @@ E na view, para referenciar os dados inseridos no arquivo acima, utilize a funç
 Caso queiramos carregar apenas o css/js correspondente a o controller atual, precisamos inserir a seguinte linha na aplicação.
 
 `<%= stylesheet_link_tag params[:controller]%>`
+
+# Adicionando bibliotecas JavaScripts
+
+1. Crie uma pasta para a biblioteca em `vendor/assets/javascript/`
+2. Coloque o arquivo .js da biblioteca nessa nova pasta criada.
+3. Vá em `config/initializers/assets.rb`
+4. Remova o comentário da linha que contém o seguinte código:
+	```
+	Rails.application.config.assets.precompile += %w(
+	                                                    search.js
+	                                                    notifyjs/notify.js
+	                                                )
+	```
+5. Adicione o caminho da nova biblioteca, no exemplo acima foi notifyjs/notify.js
+6. Por último, adicione a seguinte linha no arquivo de layout `<%= javascript_include_tag 'notifyjs/notify' %>`
+7. Reinicie seu servidor.
+
+# Trabalhando com o bower
+
+Para utilizarmos o bower (Componente que gerencia bibliotecas javascript) é preciso instalar uma gem chamada: `gem "bower-rails", "~> 0.11.0"`.
+Após a instalação dessa gem, é preciso rodar o comando a seguir: `rails g bower_rails:initialize json`
+Para trabalhar com novas bibliotecas, basta abrir o arquivo bower.json presente na pasta raiz do projeto e inserir:
+```
+"dependencies": {
+  "three.js": "https://raw.github.com/mrdoob/three.js/master/build/three.js"
+}
+```
+Feito isso, `rake bower:install` e adicione o caminho da nova biblioteca no arquivo application.js (`app/assets/javascript/application.js`).
+
+# Trabalhando com rails-assets
+
+1. Insira a gem no gemfile: `gem 'rails-assets-notifyjs', source: 'https://rails-assets.org'`
+2. Execute o bundle install
+3. Adicione no arquivo application.js `//= require notifyjs`
+
+
+

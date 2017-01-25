@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
-
+#A simple, versatile notification library
+gem 'rails-assets-notifyjs', source: 'https://rails-assets.org'
+#Bower support for Rails projects. Dependency file is bower.json in Rails root dir or Bowerfile if you use DSL. Check out changelog for the latest changes and releases.
+gem "bower-rails", "~> 0.11.0"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Dynamic nested forms using jQuery made easy; works with formtastic, simple_form or default forms http://github.com/nathanvda/cocoon
